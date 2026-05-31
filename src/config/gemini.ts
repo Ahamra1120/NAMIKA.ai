@@ -11,7 +11,7 @@ if (!apiKey) {
 export const genAI = new GoogleGenerativeAI(apiKey || 'missing-key');
 
 export const calculatorModel = genAI.getGenerativeModel({
-  model: 'gemini-2.0-flash',
+  model: 'gemini-1.5-flash',
   generationConfig: {
     temperature: 0.7,
     topP: 0.95,
@@ -20,7 +20,7 @@ export const calculatorModel = genAI.getGenerativeModel({
 });
 
 export const chatModel = genAI.getGenerativeModel({
-  model: 'gemini-2.0-flash',
+  model: 'gemini-1.5-flash',
   generationConfig: {
     temperature: 0.9,
     topP: 0.95,
