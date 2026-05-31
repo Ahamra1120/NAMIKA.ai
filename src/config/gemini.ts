@@ -11,16 +11,20 @@ if (!apiKey) {
 export const genAI = new GoogleGenerativeAI(apiKey || 'missing-key');
 
 export const calculatorModel = genAI.getGenerativeModel({
-  model: 'gemini-1.5-flash',
+  model: 'gemini-2.5-flash',
   generationConfig: {
     temperature: 0.7,
     topP: 0.95,
-    maxOutputTokens: 2048,
+    maxOutputTokens: 8192,
+    responseMimeType: 'application/json',
   },
 });
 
+import { CHATBOT_SYSTEM_PROMPT } from '../constants/prompts';
+
 export const chatModel = genAI.getGenerativeModel({
-  model: 'gemini-1.5-flash',
+  model: 'gemini-2.5-flash',
+  systemInstruction: CHATBOT_SYSTEM_PROMPT,
   generationConfig: {
     temperature: 0.9,
     topP: 0.95,

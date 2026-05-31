@@ -1,11 +1,9 @@
 import { chatModel } from '../config/gemini';
-import { CHATBOT_SYSTEM_PROMPT } from '../constants/prompts';
 import type { ChatSession } from '@google/generative-ai';
 
 export function createChatSession(): ChatSession {
   return chatModel.startChat({
     history: [],
-    systemInstruction: CHATBOT_SYSTEM_PROMPT,
   });
 }
 

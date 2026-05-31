@@ -27,11 +27,23 @@ Berikan 4-5 rekomendasi bisnis yang paling cocok. Pastikan semua estimasi biaya 
 }
 
 function parseRecommendations(text: string): BusinessRecommendation[] {
-  const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
-  const jsonStr = jsonMatch ? jsonMatch[1] : text.trim();
+  // Try: JSON code block
+  const fenceMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
+  if (fenceMatch) {
+    const parsed = JSON.parse(fenceMatch[1]);
+    if (Array.isArray(parsed)) return parsed as BusinessRecommendation[];
+  }
 
-  const parsed = JSON.parse(jsonStr);
-  if (!Array.isArray(parsed)) throw new Error('Response bukan array');
+  // Try: raw JSON array anywhere in the text
+  const arrayMatch = text.match(/\[[\s\S]*\]/);
+  if (arrayMatch) {
+    const parsed = JSON.parse(arrayMatch[0]);
+    if (Array.isArray(parsed)) return parsed as BusinessRecommendation[];
+  }
+
+  // Try: plain text is already valid JSON
+  const parsed = JSON.parse(text.trim());
+  if (!Array.isArray(parsed)) throw new Error('Response bukan array JSON');
   return parsed as BusinessRecommendation[];
 }
 
