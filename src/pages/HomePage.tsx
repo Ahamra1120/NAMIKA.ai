@@ -8,10 +8,10 @@ export function HomePage() {
           <img
             src="/header-namika.png"
             alt="Namika AI"
-            className="mx-auto mb-4 w-72 md:w-96 object-contain drop-shadow-lg"
+            className="mx-auto mb-4 w-96 md:w-[32rem] object-contain drop-shadow-lg"
           />
           <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-sm">
-            Kamu tidak sendirian. Temukan peluang bisnis yang cocok dengan kondisimu,
+            Temukan peluang bisnis yang cocok dengan kondisimu,
             dan ceritakan bebanmu kepada Kawan yang selalu siap mendengarkan.
           </p>
         </div>
@@ -31,17 +31,6 @@ export function HomePage() {
             <h2 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-teal-700 transition-colors text-center">
               Kalkulator Potensi Bisnis
             </h2>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6 text-center">
-              Masukkan modal, minat, dan keahlianmu. AI akan merekomendasikan
-              ide bisnis konkret lengkap dengan estimasi pendapatan dan level risiko.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6 justify-center">
-              {['💰 Modal', '❤️ Minat', '⭐ Keahlian', '🎯 Rekomendasi AI'].map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-teal-50 text-teal-600 text-xs font-medium rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
             <div className="flex justify-center">
               <span className="inline-flex items-center gap-2 text-teal-600 font-semibold text-sm group-hover:gap-3 transition-all">
                 Mulai Sekarang
@@ -64,17 +53,6 @@ export function HomePage() {
             <h2 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-teal-700 transition-colors text-center">
               Curhat dengan Kawan
             </h2>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6 text-center">
-              Terkadang kamu butuh seseorang yang mendengarkan. Kawan hadir
-              24/7 untuk menemanimu, tanpa menghakimi, dengan empati yang tulus.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6 justify-center">
-              {['🫂 Empati', '🔒 Privat', '💬 Bebas Curhat', '🧠 Dukungan Psikologis'].map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-teal-50 text-teal-600 text-xs font-medium rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
             <div className="flex justify-center">
               <span className="inline-flex items-center gap-2 text-teal-600 font-semibold text-sm group-hover:gap-3 transition-all">
                 Cerita dengan Kawan
