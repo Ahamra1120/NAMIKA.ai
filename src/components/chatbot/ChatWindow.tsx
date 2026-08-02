@@ -13,6 +13,7 @@ interface Props {
 
 export function ChatWindow({ messages, isStreaming, onSend, onClear }: Props) {
   const bottomRef = useRef<HTMLDivElement>(null);
+  const initialIds = useRef<Set<string>>(new Set(messages.map((m) => m.id)));
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -53,7 +54,11 @@ export function ChatWindow({ messages, isStreaming, onSend, onClear }: Props) {
           </div>
         )}
         {messages.map((msg) => (
-          <MessageBubble key={msg.id} message={msg} />
+          <MessageBubble
+            key={msg.id}
+            message={msg}
+            isNew={!initialIds.current.has(msg.id)}
+          />
         ))}
         {showTyping && <TypingIndicator />}
         <div ref={bottomRef} />

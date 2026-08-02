@@ -8,12 +8,8 @@ export function HomePage() {
           <img
             src="/header-namika.png"
             alt="Namika AI"
-            className="mx-auto mb-4 w-96 md:w-[32rem] object-contain drop-shadow-lg"
+            className="mx-auto mb-4 w-200 md:w-[32rem] object-contain drop-shadow-lg"
           />
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-sm">
-            Temukan peluang bisnis yang cocok dengan kondisimu,
-            dan ceritakan bebanmu kepada Kawan yang selalu siap mendengarkan.
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">

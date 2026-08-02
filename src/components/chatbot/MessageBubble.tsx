@@ -2,6 +2,7 @@ import type { ChatMessage } from '../../types/chat';
 
 interface Props {
   message: ChatMessage;
+  isNew?: boolean;
 }
 
 function formatTime(date: Date) {
@@ -11,12 +12,12 @@ function formatTime(date: Date) {
   }).format(date);
 }
 
-export function MessageBubble({ message }: Props) {
+export function MessageBubble({ message, isNew = false }: Props) {
   const isUser = message.role === 'user';
 
   if (isUser) {
     return (
-      <div className="flex justify-end mb-4 animate-message-pop">
+      <div className={`flex justify-end mb-4 ${isNew ? 'animate-message-pop-right' : ''}`}>
         <div className="max-w-[80%]">
           <div className="bg-teal-500 text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
             <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{message.content}</p>
@@ -30,7 +31,7 @@ export function MessageBubble({ message }: Props) {
   }
 
   return (
-    <div className="flex items-start gap-3 mb-4 animate-message-pop">
+    <div className={`flex items-start gap-3 mb-4 ${isNew ? 'animate-message-pop-left' : ''}`}>
       <div className="flex-shrink-0 w-8 h-8 bg-teal-50 rounded-full overflow-hidden flex items-center justify-center mt-0.5">
         <img src="/curhat-pengetahuan.png" alt="Kawan" className="w-full h-full object-contain" />
       </div>
