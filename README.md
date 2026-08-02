@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# NAMIKA.ai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi web berbasis AI untuk membantu masyarakat bangkit dari kesulitan ekonomi. Dibangun dengan React, TypeScript, dan Google Gemini AI.
 
-Currently, two official plugins are available:
+## Fitur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Kalkulator Potensi Bisnis** — Masukkan modal, minat, dan keahlian. AI merekomendasikan ide bisnis konkret dengan estimasi pendapatan dan level risiko.
+- **Curhat dengan Kawan** — Teman AI yang hadir 24/7 untuk mendengarkan dengan empati, tanpa menghakimi.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite 8
+- Tailwind CSS 3
+- Google Gemini AI (gemini-2.5-flash)
+- React Router v7
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone repo dan install dependencies:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Salin file environment:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cp .env.example .env.local
 ```
+
+3. Isi API key Gemini di `.env.local`:
+
+```
+VITE_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+Dapatkan API key gratis di [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+4. Jalankan dev server:
+
+```bash
+npm run dev
+```
+
+Buka [http://localhost:5173](http://localhost:5173) di browser.
+
+## Scripts
+
+| Command | Deskripsi |
+|---|---|
+| `npm run dev` | Jalankan dev server |
+| `npm run build` | Build untuk production |
+| `npm run preview` | Preview hasil build |
+| `npm run lint` | Cek linting |
+
+## Struktur Proyek
+
+```
+src/
+├── components/
+│   ├── calculator/     # Form kalkulator bisnis
+│   ├── chatbot/        # UI chat (bubble, input, window)
+│   └── layout/         # Navbar
+├── pages/              # HomePage, CalculatorPage, ChatbotPage
+├── hooks/              # useChat, useBusinessCalculator
+├── services/           # Gemini API integration
+├── config/             # Konfigurasi API
+├── constants/          # Prompt AI, daftar minat kerja
+└── types/              # TypeScript types
+```
+
+## Catatan
+
+Aplikasi ini adalah alat bantu, bukan pengganti konsultasi profesional. Untuk darurat kesehatan mental, hubungi **Into The Light Indonesia: 119 ext 8**.
