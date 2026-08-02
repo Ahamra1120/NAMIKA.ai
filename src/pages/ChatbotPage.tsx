@@ -23,15 +23,18 @@ export function ChatbotPage() {
     : messages;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-4 py-6">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            🤝 Curhat dengan Kawan
-          </h1>
-          <p className="text-gray-500 text-sm">
-            Ceritakan bebanmu. Kawan siap mendengarkan dengan empati, tanpa menghakimi.
-          </p>
+        <div className="mb-6 flex items-center gap-4">
+          <img src="/curhat-pengetahuan.png" alt="" className="w-16 h-16 object-contain flex-shrink-0" />
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800 mb-1">
+              Curhat dengan Kawan
+            </h1>
+            <p className="text-gray-600 text-sm">
+              Ceritakan bebanmu. Kawan siap mendengarkan dengan empati, tanpa menghakimi.
+            </p>
+          </div>
         </div>
 
         {!hasApiKey && (

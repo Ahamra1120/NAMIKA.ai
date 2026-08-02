@@ -6,9 +6,8 @@ export function Navbar() {
   return (
     <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-bold text-gray-800 hover:text-teal-600 transition-colors">
-          <span className="text-2xl">🌱</span>
-          <span className="text-lg">NAMIKA.ai</span>
+        <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <img src="/header-namika.png" alt="Namika AI" className="h-10 object-contain" />
         </Link>
 
         <div className="flex items-center gap-1">

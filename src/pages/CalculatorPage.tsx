@@ -19,15 +19,18 @@ export function CalculatorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            📊 Kalkulator Potensi Bisnis
-          </h1>
-          <p className="text-gray-500">
-            Ceritakan kondisimu dan biarkan AI menemukan peluang yang paling cocok untukmu.
-          </p>
+        <div className="mb-8 flex items-center gap-4">
+          <img src="/koin-kalkulator.png" alt="" className="w-16 h-16 object-contain flex-shrink-0" />
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800 mb-1">
+              Kalkulator Potensi Bisnis
+            </h1>
+            <p className="text-gray-600">
+              Ceritakan kondisimu dan biarkan AI menemukan peluang yang paling cocok untukmu.
+            </p>
+          </div>
         </div>
 
         {!hasApiKey && (

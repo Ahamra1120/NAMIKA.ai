@@ -24,8 +24,8 @@ export function ChatWindow({ messages, isStreaming, onSend, onClear }: Props) {
     <div className="flex flex-col h-[calc(100vh-8rem)] max-h-[700px]">
       <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-xl">
-            🤝
+          <div className="w-10 h-10 bg-teal-50 rounded-full overflow-hidden flex items-center justify-center">
+            <img src="/curhat-pengetahuan.png" alt="Kawan" className="w-full h-full object-contain" />
           </div>
           <div>
             <p className="font-semibold text-gray-800">Kawan</p>
