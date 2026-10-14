@@ -156,12 +156,18 @@ function SavingsDashboard({
   const sisaHari = Math.max(1, daysBetween(today, goal.endDate) + 1);
   const targetHariIni = Math.max(0, Math.ceil((goal.targetNominal - totalSebelumHariIni) / sisaHari));
 
+  // Hari ini baru dihitung ke jadwal setelah diisi, supaya pengguna tidak dianggap tertinggal di pagi hari
+  const hariDihitung = today > goal.endDate
+    ? goal.totalHari
+    : hariKe - 1 + (today in entries ? 1 : 0);
+
   return (
     <div className="space-y-6">
       <ProgressSummary
         goal={goal}
         total={total}
         hariKe={hariKe}
+        hariDihitung={hariDihitung}
         targetHarianIdeal={targetHarianIdeal}
         targetHariIni={targetHariIni}
       />

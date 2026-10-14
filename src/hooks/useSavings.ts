@@ -15,7 +15,14 @@ interface SavingsData {
 function loadData(): SavingsData | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as SavingsData) : null;
+    if (!raw) return null;
+    const data = JSON.parse(raw) as SavingsData;
+    // Target harus berasal dari bisnis pilihan di Kalkulator; target lama tanpa bisnis dibuang
+    if (!data.goal?.bisnis) {
+      localStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
+    return data;
   } catch {
     return null;
   }

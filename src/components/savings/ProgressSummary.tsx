@@ -6,14 +6,18 @@ interface Props {
   goal: SavingsGoal;
   total: number;
   hariKe: number;
+  // Jumlah hari yang sudah "jatuh tempo" untuk dibandingkan dengan jadwal
+  hariDihitung: number;
   targetHarianIdeal: number;
   targetHariIni: number;
 }
 
-export function ProgressSummary({ goal, total, hariKe, targetHarianIdeal, targetHariIni }: Props) {
+export function ProgressSummary({
+  goal, total, hariKe, hariDihitung, targetHarianIdeal, targetHariIni,
+}: Props) {
   const pct = Math.min(100, Math.round((total / goal.targetNominal) * 100));
   const sisa = Math.max(0, goal.targetNominal - total);
-  const seharusnya = Math.min(goal.targetNominal, targetHarianIdeal * hariKe);
+  const seharusnya = Math.min(goal.targetNominal, targetHarianIdeal * hariDihitung);
   const selisih = total - seharusnya;
   const tercapai = total >= goal.targetNominal;
 
