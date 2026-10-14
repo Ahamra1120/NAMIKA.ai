@@ -3,6 +3,7 @@ import { Navbar } from './components/layout/Navbar';
 import { HomePage } from './pages/HomePage';
 import { CalculatorPage } from './pages/CalculatorPage';
 import { ChatbotPage } from './pages/ChatbotPage';
+import { SavingsPage } from './pages/SavingsPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/kalkulator" element={<CalculatorPage />} />
+            <Route path="/nabung" element={<SavingsPage />} />
             <Route path="/curhat" element={<ChatbotPage />} />
           </Routes>
         </main>

@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import type { BusinessRecommendation } from '../../types/calculator';
+import type { SavingsLocationState } from '../../types/savings';
 
 interface Props {
   recommendation: BusinessRecommendation;
@@ -28,6 +30,12 @@ const RISK_STYLES = {
 
 export function ResultCard({ recommendation: r, index }: Props) {
   const risk = RISK_STYLES[r.levelRisiko] ?? RISK_STYLES['Sedang'];
+  const navigate = useNavigate();
+
+  function startSaving() {
+    const state: SavingsLocationState = { bisnis: r };
+    navigate('/nabung', { state });
+  }
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
@@ -75,6 +83,14 @@ export function ResultCard({ recommendation: r, index }: Props) {
             <div className={`h-full rounded-full ${risk.bar} ${risk.barWidth}`} />
           </div>
         </div>
+
+        <button
+          type="button"
+          onClick={startSaving}
+          className="w-full py-2.5 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition-colors"
+        >
+          🐷 Nabung untuk Bisnis Ini →
+        </button>
       </div>
     </div>
   );

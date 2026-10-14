@@ -2,14 +2,7 @@ import { calculatorModel } from '../config/gemini';
 import { CALCULATOR_SYSTEM_PROMPT } from '../constants/prompts';
 import { WORK_INTERESTS } from '../constants/workInterests';
 import type { CalculatorInput, BusinessRecommendation } from '../types/calculator';
-
-function formatIDR(amount: number): string {
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-  }).format(amount);
-}
+import { formatIDR } from '../utils/format';
 
 function buildPrompt(input: CalculatorInput): string {
   const interestLabels = input.minatPekerjaan
