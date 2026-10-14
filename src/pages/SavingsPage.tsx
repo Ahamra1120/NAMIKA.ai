@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { SavingsSetupForm } from '../components/savings/SavingsSetupForm';
 import { ProgressSummary } from '../components/savings/ProgressSummary';
 import { PlanCard } from '../components/savings/PlanCard';
@@ -22,7 +22,7 @@ export function SavingsPage() {
 
   // Track dari Kalkulator Bisnis: rekomendasi yang dipilih dikirim lewat router state
   const incoming = (location.state as SavingsLocationState | null)?.bisnis ?? null;
-  const [linkedBusiness, setLinkedBusiness] = useState<BusinessRecommendation | null>(incoming);
+  const [linkedBusiness] = useState<BusinessRecommendation | null>(incoming);
   const [setupMode, setSetupMode] = useState(!!incoming);
 
   useEffect(() => {
@@ -33,22 +33,20 @@ export function SavingsPage() {
   function handleCreate(input: SavingsGoalInput) {
     createGoal(input);
     setSetupMode(false);
-    setLinkedBusiness(null);
   }
 
   function handleNewGoal() {
     if (!window.confirm('Buat target baru? Target dan catatan pendapatan saat ini akan dihapus.')) return;
     resetGoal();
-    setSetupMode(true);
+    // Target baru selalu dimulai dari memilih bisnis di Kalkulator
+    navigate('/kalkulator');
   }
-
-  const showSetup = !goal || setupMode;
 
   return (
     <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-4 py-10">
         <div className="mb-8 flex items-center gap-4">
-          <span className="w-16 h-16 flex-shrink-0 flex items-center justify-center text-5xl">🐷</span>
+          <img src="/nabung-yuk.png" alt="" className="w-16 h-16 object-contain flex-shrink-0" />
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-1">Nabung Yuk</h1>
             <p className="text-gray-600">
@@ -67,7 +65,20 @@ export function SavingsPage() {
           </div>
         )}
 
-        {showSetup ? (
+        {goal && !setupMode ? (
+          <SavingsDashboard
+            key={goal.createdAt}
+            goal={goal}
+            plan={plan}
+            entries={entries}
+            planLoading={planLoading}
+            planError={planError}
+            onRetryPlan={retryPlan}
+            onSaveEntry={setEntry}
+            onRemoveEntry={removeEntry}
+            onNewGoal={handleNewGoal}
+          />
+        ) : linkedBusiness ? (
           <>
             {goal && (
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6 flex items-center justify-between gap-3">
@@ -83,28 +94,38 @@ export function SavingsPage() {
               </div>
             )}
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
-              <SavingsSetupForm
-                bisnis={linkedBusiness}
-                onUnlinkBusiness={() => setLinkedBusiness(null)}
-                onSubmit={handleCreate}
-              />
+              <SavingsSetupForm bisnis={linkedBusiness} onSubmit={handleCreate} />
             </div>
           </>
         ) : (
-          <SavingsDashboard
-            key={goal.createdAt}
-            goal={goal}
-            plan={plan}
-            entries={entries}
-            planLoading={planLoading}
-            planError={planError}
-            onRetryPlan={retryPlan}
-            onSaveEntry={setEntry}
-            onRemoveEntry={removeEntry}
-            onNewGoal={handleNewGoal}
-          />
+          <CalculatorFirstNotice />
         )}
       </div>
+    </div>
+  );
+}
+
+// Nabung Yuk adalah lanjutan Kalkulator Bisnis, jadi target hanya bisa dibuat dari bisnis yang dipilih di sana
+function CalculatorFirstNotice() {
+  return (
+    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 text-center">
+      <img src="/koin-kalkulator.png" alt="" className="w-20 h-20 object-contain mx-auto mb-4" />
+      <h2 className="text-xl font-bold text-gray-800 mb-2">Temukan bisnismu dulu, yuk!</h2>
+      <p className="text-gray-600 text-sm max-w-md mx-auto mb-6">
+        Nabung Yuk membantumu mencapai target dari bisnis yang kamu jalankan. Isi Kalkulator Potensi
+        Bisnis, pilih salah satu rekomendasi, lalu klik <strong>"Nabung untuk Bisnis Ini"</strong>.
+      </p>
+      <ol className="text-left text-sm text-gray-600 max-w-xs mx-auto mb-6 space-y-1.5">
+        <li>1️⃣ Isi modal, minat, dan keahlianmu</li>
+        <li>2️⃣ Pilih rekomendasi bisnis yang cocok</li>
+        <li>3️⃣ Tentukan target dan mulai menabung</li>
+      </ol>
+      <Link
+        to="/kalkulator"
+        className="inline-block px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-2xl shadow-lg hover:from-teal-600 hover:to-teal-700 transition-all"
+      >
+        Buka Kalkulator Bisnis →
+      </Link>
     </div>
   );
 }

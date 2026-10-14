@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { CalculatorInput, BusinessRecommendation } from '../types/calculator';
 import { getBusinessRecommendations } from '../services/geminiCalculator';
+
+// Simpan hasil agar tetap ada saat pengguna kembali dari Nabung Yuk
+const STORAGE_KEY = 'kalkulator_recommendations';
 
 interface CalculatorState {
   recommendations: BusinessRecommendation[];
@@ -8,12 +11,33 @@ interface CalculatorState {
   error: string | null;
 }
 
+function loadRecommendations(): BusinessRecommendation[] {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as BusinessRecommendation[]) : [];
+  } catch {
+    return [];
+  }
+}
+
 export function useBusinessCalculator() {
-  const [state, setState] = useState<CalculatorState>({
-    recommendations: [],
+  const [state, setState] = useState<CalculatorState>(() => ({
+    recommendations: loadRecommendations(),
     loading: false,
     error: null,
-  });
+  }));
+
+  useEffect(() => {
+    try {
+      if (state.recommendations.length > 0) {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state.recommendations));
+      } else if (!state.loading) {
+        sessionStorage.removeItem(STORAGE_KEY);
+      }
+    } catch {
+      // Storage tidak tersedia — hasil tetap tampil, hanya tidak tersimpan
+    }
+  }, [state.recommendations, state.loading]);
 
   async function calculate(input: CalculatorInput) {
     if (input.modal <= 0) {

@@ -7,8 +7,7 @@ import { formatIDR, parseIDRRange } from '../../utils/format';
 import { todayKey, computeEndDate, daysBetween, formatDateLong } from '../../utils/date';
 
 interface Props {
-  bisnis: BusinessRecommendation | null;
-  onUnlinkBusiness: () => void;
+  bisnis: BusinessRecommendation;
   onSubmit: (input: SavingsGoalInput) => void;
 }
 
@@ -18,12 +17,7 @@ const UNITS: { id: DurationUnit; label: string }[] = [
   { id: 'bulan', label: 'Bulan' },
 ];
 
-const QUICK_AMOUNTS = [500_000, 1_000_000, 5_000_000, 10_000_000];
-
-function buildSuggestions(bisnis: BusinessRecommendation | null) {
-  if (!bisnis) {
-    return QUICK_AMOUNTS.map((v) => ({ label: formatIDR(v), value: v }));
-  }
+function buildSuggestions(bisnis: BusinessRecommendation) {
   const suggestions: { label: string; value: number }[] = [];
   const modal = parseIDRRange(bisnis.estimasiBiayaAwal);
   const potensi = parseIDRRange(bisnis.potensiPendapatanBulanan);
@@ -39,7 +33,7 @@ function buildSuggestions(bisnis: BusinessRecommendation | null) {
   return suggestions;
 }
 
-export function SavingsSetupForm({ bisnis, onUnlinkBusiness, onSubmit }: Props) {
+export function SavingsSetupForm({ bisnis, onSubmit }: Props) {
   const [target, setTarget] = useState(0);
   const [durasi, setDurasi] = useState(30);
   const [satuan, setSatuan] = useState<DurationUnit>('hari');
@@ -59,39 +53,24 @@ export function SavingsSetupForm({ bisnis, onUnlinkBusiness, onSubmit }: Props) 
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      {bisnis ? (
-        <div className="bg-teal-50 border border-teal-200 rounded-2xl p-4 flex items-start gap-3">
-          <span className="text-2xl">🔗</span>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-teal-500 uppercase tracking-wide">
-              Terhubung dari Kalkulator Bisnis
-            </p>
-            <p className="font-bold text-teal-800">{bisnis.nama}</p>
-            <p className="text-sm text-teal-700 mt-0.5">
-              Modal {bisnis.estimasiBiayaAwal} · Potensi {bisnis.potensiPendapatanBulanan}/bulan
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={onUnlinkBusiness}
-            className="text-xs text-teal-600 hover:text-teal-800 underline flex-shrink-0"
-          >
-            Lepas
-          </button>
-        </div>
-      ) : (
-        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 flex items-start gap-3">
-          <span className="text-2xl">💡</span>
-          <p className="text-sm text-gray-600">
-            Belum punya ide bisnis? Coba{' '}
-            <Link to="/kalkulator" className="text-teal-600 font-semibold hover:underline">
-              Kalkulator Potensi Bisnis
-            </Link>{' '}
-            dulu, lalu klik <strong>"Nabung untuk Bisnis Ini"</strong> di salah satu rekomendasi agar
-            rencanamu disesuaikan dengan bisnis tersebut. Atau langsung isi target di bawah.
+      <div className="bg-teal-50 border border-teal-200 rounded-2xl p-4 flex items-start gap-3">
+        <span className="text-2xl">🔗</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-semibold text-teal-500 uppercase tracking-wide">
+            Bisnis pilihanmu dari Kalkulator
+          </p>
+          <p className="font-bold text-teal-800">{bisnis.nama}</p>
+          <p className="text-sm text-teal-700 mt-0.5">
+            Modal {bisnis.estimasiBiayaAwal} · Potensi {bisnis.potensiPendapatanBulanan}/bulan
           </p>
         </div>
-      )}
+        <Link
+          to="/kalkulator"
+          className="text-xs text-teal-600 hover:text-teal-800 underline flex-shrink-0"
+        >
+          Ganti bisnis
+        </Link>
+      </div>
 
       <div>
         <label htmlFor="target-nominal" className="block text-sm font-semibold text-gray-700 mb-2">

@@ -30,6 +30,11 @@ function saveData(data: SavingsData | null) {
   }
 }
 
+// Dipakai Navbar/Home untuk menampilkan pintasan hanya jika pengguna sudah punya target
+export function hasActiveSavingsGoal(): boolean {
+  return loadData() !== null;
+}
+
 export function useSavings() {
   const [data, setData] = useState<SavingsData | null>(loadData);
   const [planLoading, setPlanLoading] = useState(false);

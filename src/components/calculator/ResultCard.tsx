@@ -87,9 +87,10 @@ export function ResultCard({ recommendation: r, index }: Props) {
         <button
           type="button"
           onClick={startSaving}
-          className="w-full py-2.5 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition-colors"
+          className="w-full py-2.5 flex items-center justify-center gap-2 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition-colors"
         >
-          🐷 Nabung untuk Bisnis Ini →
+          <img src="/nabung-yuk.png" alt="" className="w-6 h-6 object-contain" />
+          Nabung untuk Bisnis Ini →
         </button>
       </div>
     </div>

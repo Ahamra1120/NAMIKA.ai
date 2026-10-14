@@ -67,6 +67,13 @@ export function ResultsList({ recommendations, loading, error, onRetry }: Props)
           Rekomendasi Bisnis untuk Kamu
         </h2>
       </div>
+      <div className="flex items-center gap-3 bg-teal-50 border border-teal-100 rounded-2xl p-3 mb-6 -mt-3">
+        <img src="/nabung-yuk.png" alt="" className="w-10 h-10 object-contain flex-shrink-0" />
+        <p className="text-sm text-teal-800">
+          Sudah menemukan yang cocok? Klik <strong>"Nabung untuk Bisnis Ini"</strong> untuk membuat target
+          dan rencana menabung dari bisnis tersebut.
+        </p>
+      </div>
       <div className="grid md:grid-cols-2 gap-4">
         {recommendations.map((rec, i) => (
           <ResultCard key={i} recommendation={rec} index={i} />

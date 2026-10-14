@@ -1,7 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
+import { hasActiveSavingsGoal } from '../../hooks/useSavings';
 
 export function Navbar() {
   const { pathname } = useLocation();
+  // Nabung Yuk hanya muncul setelah pengguna membuat target lewat Kalkulator Bisnis.
+  // Dibaca ulang setiap pindah halaman (Navbar re-render karena useLocation).
+  const showSavings = hasActiveSavingsGoal();
 
   return (
     <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
@@ -22,17 +26,19 @@ export function Navbar() {
             <span>📊</span>
             <span className="hidden sm:inline">Kalkulator Bisnis</span>
           </Link>
-          <Link
-            to="/nabung"
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-              pathname === '/nabung'
-                ? 'bg-teal-50 text-teal-700'
-                : 'text-gray-600 hover:text-teal-600 hover:bg-teal-50'
-            }`}
-          >
-            <span>🐷</span>
-            <span className="hidden sm:inline">Nabung Yuk</span>
-          </Link>
+          {(showSavings || pathname === '/nabung') && (
+            <Link
+              to="/nabung"
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                pathname === '/nabung'
+                  ? 'bg-teal-50 text-teal-700'
+                  : 'text-gray-600 hover:text-teal-600 hover:bg-teal-50'
+              }`}
+            >
+              <img src="/nabung-yuk.png" alt="" className="w-5 h-5 object-contain" />
+              <span className="hidden sm:inline">Nabung Yuk</span>
+            </Link>
+          )}
           <Link
             to="/curhat"
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${

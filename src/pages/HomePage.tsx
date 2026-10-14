@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
+import { hasActiveSavingsGoal } from '../hooks/useSavings';
 
 export function HomePage() {
+  const showSavings = hasActiveSavingsGoal();
+
   return (
     <div className="min-h-screen">
-      <div className="max-w-5xl mx-auto px-4 pt-16 pb-24">
+      <div className="max-w-4xl mx-auto px-4 pt-16 pb-24">
         <div className="text-center mb-16">
           <img
             src="/header-namika.png"
@@ -12,7 +15,7 @@ export function HomePage() {
           />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <Link
             to="/kalkulator"
             className="group bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-md border border-white/60 hover:shadow-xl hover:border-teal-200 transition-all duration-300"
@@ -30,26 +33,6 @@ export function HomePage() {
             <div className="flex justify-center">
               <span className="inline-flex items-center gap-2 text-teal-600 font-semibold text-sm group-hover:gap-3 transition-all">
                 Mulai Sekarang
-                <span>→</span>
-              </span>
-            </div>
-          </Link>
-
-          <Link
-            to="/nabung"
-            className="group bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-md border border-white/60 hover:shadow-xl hover:border-teal-200 transition-all duration-300"
-          >
-            <div className="flex justify-center mb-5">
-              <span className="w-24 h-24 flex items-center justify-center text-7xl group-hover:scale-110 transition-transform duration-300">
-                🐷
-              </span>
-            </div>
-            <h2 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-teal-700 transition-colors text-center">
-              Nabung Yuk
-            </h2>
-            <div className="flex justify-center">
-              <span className="inline-flex items-center gap-2 text-teal-600 font-semibold text-sm group-hover:gap-3 transition-all">
-                Capai Targetmu
                 <span>→</span>
               </span>
             </div>
@@ -77,6 +60,24 @@ export function HomePage() {
             </div>
           </Link>
         </div>
+
+        {showSavings && (
+          <Link
+            to="/nabung"
+            className="group mt-6 flex items-center gap-4 bg-white/90 backdrop-blur-sm rounded-3xl p-5 shadow-md border border-white/60 hover:shadow-xl hover:border-teal-200 transition-all duration-300"
+          >
+            <img
+              src="/nabung-yuk.png"
+              alt=""
+              className="w-14 h-14 object-contain flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+            />
+            <div className="flex-1">
+              <p className="font-bold text-gray-800 group-hover:text-teal-700 transition-colors">Nabung Yuk</p>
+              <p className="text-sm text-gray-500">Lanjutkan target dari bisnis pilihanmu dan catat pendapatan hari ini.</p>
+            </div>
+            <span className="text-teal-600 font-semibold text-sm">→</span>
+          </Link>
+        )}
 
         <div className="mt-12 bg-amber-50/90 backdrop-blur-sm border border-amber-200 rounded-2xl p-5 text-center">
           <p className="text-amber-700 text-sm">
