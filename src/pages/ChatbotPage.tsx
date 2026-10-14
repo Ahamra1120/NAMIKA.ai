@@ -47,7 +47,7 @@ export function ChatbotPage() {
           </div>
         )}
 
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div data-tour="chat-window" className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
           <ChatWindow
             messages={displayMessages}
             isStreaming={isStreaming}
@@ -56,7 +56,7 @@ export function ChatbotPage() {
           />
         </div>
 
-        <div className="mt-4 bg-blue-50 border border-blue-100 rounded-xl p-4">
+        <div data-tour="chat-note" className="mt-4 bg-blue-50 border border-blue-100 rounded-xl p-4">
           <p className="text-blue-700 text-xs text-center">
             Percakapan ini bersifat privat dan hanya tersimpan di sesi browser ini.
             Kawan adalah AI — bukan psikolog. Untuk bantuan profesional: <strong>Into The Light 119 ext 8</strong>

@@ -23,12 +23,19 @@ export function CalculatorForm({ onSubmit, loading }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <ModalInput value={modal} onChange={setModal} />
-      <InterestSelector selected={minat} onChange={setMinat} />
-      <SkillsInput skills={keahlian} onChange={setKeahlian} />
+      <div data-tour="calc-modal">
+        <ModalInput value={modal} onChange={setModal} />
+      </div>
+      <div data-tour="calc-interest">
+        <InterestSelector selected={minat} onChange={setMinat} />
+      </div>
+      <div data-tour="calc-skills">
+        <SkillsInput skills={keahlian} onChange={setKeahlian} />
+      </div>
 
       <button
         type="submit"
+        data-tour="calc-submit"
         disabled={!isValid || loading}
         className="w-full py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold text-lg rounded-2xl shadow-lg hover:from-teal-600 hover:to-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.01] active:scale-[0.99]"
       >

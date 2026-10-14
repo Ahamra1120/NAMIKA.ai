@@ -81,7 +81,7 @@ export function IncomeTracker({ goal, entries, targetHarian, onSave, onRemove }:
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} data-tour="nabung-tracker" className="space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="income-date" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -117,7 +117,7 @@ export function IncomeTracker({ goal, entries, targetHarian, onSave, onRemove }:
         {savedMsg && <p className="text-sm text-green-600 text-center">✓ {savedMsg}</p>}
       </form>
 
-      <div className="border-t pt-4">
+      <div data-tour="nabung-history" className="border-t pt-4">
         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Riwayat</p>
         <ul className="divide-y divide-gray-100">
           {visibleDays.map((d) => {

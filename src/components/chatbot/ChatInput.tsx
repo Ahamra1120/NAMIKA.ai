@@ -22,7 +22,7 @@ export function ChatInput({ onSend, disabled }: Props) {
   }
 
   return (
-    <div className="border-t border-gray-100 bg-white px-4 py-3">
+    <div data-tour="chat-input" className="border-t border-gray-100 bg-white px-4 py-3">
       <div className="flex gap-3 items-end max-w-3xl mx-auto">
         <textarea
           value={text}

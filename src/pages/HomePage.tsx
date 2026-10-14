@@ -18,6 +18,7 @@ export function HomePage() {
         <div className="grid md:grid-cols-2 gap-6">
           <Link
             to="/kalkulator"
+            data-tour="home-kalkulator"
             className="group bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-md border border-white/60 hover:shadow-xl hover:border-teal-200 transition-all duration-300"
           >
             <div className="flex justify-center mb-5">
@@ -40,6 +41,7 @@ export function HomePage() {
 
           <Link
             to="/curhat"
+            data-tour="home-curhat"
             className="group bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-md border border-white/60 hover:shadow-xl hover:border-teal-200 transition-all duration-300"
           >
             <div className="flex justify-center mb-5">
@@ -64,6 +66,7 @@ export function HomePage() {
         {showSavings && (
           <Link
             to="/nabung"
+            data-tour="home-nabung"
             className="group mt-6 flex items-center gap-4 bg-white/90 backdrop-blur-sm rounded-3xl p-5 shadow-md border border-white/60 hover:shadow-xl hover:border-teal-200 transition-all duration-300"
           >
             <img

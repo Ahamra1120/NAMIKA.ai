@@ -22,7 +22,7 @@ export function ProgressSummary({
   const tercapai = total >= goal.targetNominal;
 
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
+    <div data-tour="nabung-progress" className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
       {goal.bisnis && (
         <p className="text-xs font-semibold text-teal-500 uppercase tracking-wide mb-1">
           🔗 {goal.bisnis.nama}

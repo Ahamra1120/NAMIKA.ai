@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import { hasActiveSavingsGoal } from '../../hooks/useSavings';
+import { useTour } from '../tour/tourContext';
 
 export function Navbar() {
   const { pathname } = useLocation();
+  const { page, startTour } = useTour();
   // Nabung Yuk hanya muncul setelah pengguna membuat target lewat Kalkulator Bisnis.
   // Dibaca ulang setiap pindah halaman (Navbar re-render karena useLocation).
   const showSavings = hasActiveSavingsGoal();
@@ -50,6 +52,18 @@ export function Navbar() {
             <span>💬</span>
             <span className="hidden sm:inline">Curhat dengan Kawan</span>
           </Link>
+          {page && (
+            <button
+              type="button"
+              onClick={startTour}
+              data-tour="help-button"
+              title="Bantuan penggunaan aplikasi"
+              aria-label="Bantuan penggunaan aplikasi"
+              className="ml-2 w-9 h-9 flex-shrink-0 rounded-full border-2 border-teal-200 text-teal-600 font-bold hover:bg-teal-50 hover:border-teal-400 transition-colors"
+            >
+              ?
+            </button>
+          )}
         </div>
       </div>
     </nav>

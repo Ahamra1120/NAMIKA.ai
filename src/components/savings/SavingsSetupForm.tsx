@@ -53,7 +53,7 @@ export function SavingsSetupForm({ bisnis, onSubmit }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="bg-teal-50 border border-teal-200 rounded-2xl p-4 flex items-start gap-3">
+      <div data-tour="nabung-business" className="bg-teal-50 border border-teal-200 rounded-2xl p-4 flex items-start gap-3">
         <span className="text-2xl">🔗</span>
         <div className="flex-1 min-w-0">
           <p className="text-xs font-semibold text-teal-500 uppercase tracking-wide">
@@ -72,7 +72,7 @@ export function SavingsSetupForm({ bisnis, onSubmit }: Props) {
         </Link>
       </div>
 
-      <div>
+      <div data-tour="nabung-target">
         <label htmlFor="target-nominal" className="block text-sm font-semibold text-gray-700 mb-2">
           Target Nominal yang Ingin Diraih
         </label>
@@ -95,7 +95,7 @@ export function SavingsSetupForm({ bisnis, onSubmit }: Props) {
         </div>
       </div>
 
-      <div>
+      <div data-tour="nabung-durasi">
         <label htmlFor="durasi" className="block text-sm font-semibold text-gray-700 mb-2">
           Target Waktu
         </label>
@@ -136,6 +136,7 @@ export function SavingsSetupForm({ bisnis, onSubmit }: Props) {
 
       <button
         type="submit"
+        data-tour="nabung-submit"
         disabled={!isValid}
         className="w-full py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold text-lg rounded-2xl shadow-lg hover:from-teal-600 hover:to-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.01] active:scale-[0.99]"
       >

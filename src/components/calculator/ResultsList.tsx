@@ -74,7 +74,7 @@ export function ResultsList({ recommendations, loading, error, onRetry }: Props)
           dan rencana menabung dari bisnis tersebut.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 gap-4">
+      <div data-tour="calc-results" className="grid md:grid-cols-2 gap-4">
         {recommendations.map((rec, i) => (
           <ResultCard key={i} recommendation={rec} index={i} />
         ))}

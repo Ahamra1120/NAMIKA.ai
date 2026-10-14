@@ -52,7 +52,7 @@ export function PlanCard({ goal, plan, total, loading, error, onRetry }: Props) 
   const currentIdx = plan.tahapan.findIndex((t) => total < t.targetKumulatif);
 
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-5">
+    <div data-tour="nabung-plan" className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-5">
       <div className="flex items-center gap-2">
         <span className="text-xl">🗺️</span>
         <h2 className="text-xl font-bold text-gray-800">Rencana Personalmu</h2>

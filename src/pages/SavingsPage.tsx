@@ -108,7 +108,7 @@ export function SavingsPage() {
 // Nabung Yuk adalah lanjutan Kalkulator Bisnis, jadi target hanya bisa dibuat dari bisnis yang dipilih di sana
 function CalculatorFirstNotice() {
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 text-center">
+    <div data-tour="nabung-gate" className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 text-center">
       <img src="/koin-kalkulator.png" alt="" className="w-20 h-20 object-contain mx-auto mb-4" />
       <h2 className="text-xl font-bold text-gray-800 mb-2">Temukan bisnismu dulu, yuk!</h2>
       <p className="text-gray-600 text-sm max-w-md mx-auto mb-6">

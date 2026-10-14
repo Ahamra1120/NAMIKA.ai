@@ -87,6 +87,7 @@ export function ResultCard({ recommendation: r, index }: Props) {
         <button
           type="button"
           onClick={startSaving}
+          data-tour={index === 0 ? 'calc-nabung' : undefined}
           className="w-full py-2.5 flex items-center justify-center gap-2 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-700 transition-colors"
         >
           <img src="/nabung-yuk.png" alt="" className="w-6 h-6 object-contain" />
